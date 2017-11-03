@@ -1,3 +1,6 @@
+# Agent-Based Modeling of Marriages from Online Dating
+### Apurva Raman and Serena Chen
+
 ## Abstract
 Traditionally, partnerships are formed between people in the same community, and are people who have familial or social ties with each other. However, online dating has allowed people to meet and form partnerships with others who are not connected to their social group. We can model the process of forming partnerships by using an agent based model, where each agent has traits and preferences and a network of people they can marry. We want to explore different kinds of agents, specifically agents who prefer same-sex partners, and analyze the impact of online dating on their number and quality of their partnerships.
 
@@ -9,7 +12,7 @@ We will replicate Ortega and Hergovich’s experiment in which they model the im
 
 We expect to see an increase in interracial marriages comparable to the results found in Ortega and Hergovich’s experiment, and we expect to replicate their findings of fewer marriages through online dating ending in divorce. We can also plot the welfare metrics (size, diversity, and size) to see if our replication of the model produces the same results. Ortega and Hergovich state that agents are heterosexual because in one-sided matching there may be no stable pairings, so we expect to see some evidence of this when adding one-sided matching by adding a percentage of people who prefer same-sex relationships. We still expect the number of interracial marriages to increase, and we expect the relationship between interracial marriages and the welfare metrics for heterosexual agents to hold for lesbian/gay/bisexual agents. 
 
-![][img/graph.png]
+![](img/graph.png)
 
 Figure 1: Sample graphs that we will plot.
 
