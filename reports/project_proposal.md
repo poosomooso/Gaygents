@@ -9,7 +9,7 @@ We will replicate Ortega and Hergovich’s experiment in which they model the im
 
 We expect to see an increase in interracial marriages comparable to the results found in Ortega and Hergovich’s experiment, and we expect to replicate their findings of fewer marriages through online dating ending in divorce. We can also plot the welfare metrics (size, diversity, and size) to see if our replication of the model produces the same results. Ortega and Hergovich state that agents are heterosexual because in one-sided matching there may be no stable pairings, so we expect to see some evidence of this when adding one-sided matching by adding a percentage of people who prefer same-sex relationships. We still expect the number of interracial marriages to increase, and we expect the relationship between interracial marriages and the welfare metrics for heterosexual agents to hold for lesbian/gay/bisexual agents. 
 
-![][img/graphs.png]
+![][img/graph.png]
 
 Figure 1: Sample graphs that we will plot.
 
