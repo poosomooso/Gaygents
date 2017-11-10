@@ -48,10 +48,11 @@ adj=zeros(m*n);
 %Adjacency matrix
 boxes=(((m-1)*m)/2)*n^2;
 %Number of race boxes in each adjacency matrix times number of people %in each box, i.e. number of interracial edges
-inter_edges=randsample(boxes,floor(boxes*q));
+inter_edges=randsample(boxes,floor(boxes*q)); % indexes of interracial edge in the adj matrix
 rr=1;
 for i=1:(m*n)
-    for j=n+floor((i-1)/n)*n+1:(m*n)
+    prev_race_ind = floor((i-1)/n)
+    for j=n+prev_race_ind*n+1:(m*n)
         if i~=j
         if any(rr==inter_edges)
             adj(i,j)=1;
@@ -68,7 +69,7 @@ end
 %     0     0     0     0     0     0
 %     0     0     0     0     0     0
 %Part 2.2: Intraracial edges
-intra_edges=rand(n*m);rr=0;
+intra_edges=rand(n*m);rr=0; % probability that a person of the same race is adjacent
 for i=1:n*m
     rr=floor((i-1)/n);
     for j=i+1:(rr*n)+n
@@ -78,10 +79,10 @@ for i=1:n*m
     end
 end
 %Self explanatory, really: creating inter links
-adj=triu(adj,-1)+triu(adj)';
+adj=triu(adj,-1)+triu(adj)'; % the negative 1 doesn't seem to matter?
 %Preserving symmetry of adjacency matrix
 %WARNING: Part only needed for LONG marriages
-adj2=adj*adj;
+adj2=adj*adj; % distance between people or something
 %adj2 tell us if there is a path connecting two persons of length 2
 adj3=zeros(m*n);
 for i=1:m*n
