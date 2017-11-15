@@ -51,12 +51,12 @@ boxes=(((m-1)*m)/2)*n^2;
 inter_edges=randsample(boxes,floor(boxes*q)); % indexes of interracial edge in the adj matrix
 rr=1;
 for i=1:(m*n)
-    prev_race_ind = floor((i-1)/n)
+    prev_race_ind = floor((i-1)/n);
     for j=n+prev_race_ind*n+1:(m*n)
         if i~=j
-        if any(rr==inter_edges)
-            adj(i,j)=1;
-        end
+            if any(rr==inter_edges)
+                adj(i,j)=1;
+            end
         rr=rr+1;
         end
     end
@@ -82,7 +82,7 @@ end
 adj=triu(adj,-1)+triu(adj)'; % the negative 1 doesn't seem to matter?
 %Preserving symmetry of adjacency matrix
 %WARNING: Part only needed for LONG marriages
-adj2=adj*adj; % distance between people or something
+adj2=adj*adj; % Anything above 0 in the resulting matrix means that there is distance 1 or two between them.
 %adj2 tell us if there is a path connecting two persons of length 2
 adj3=zeros(m*n);
 for i=1:m*n
@@ -109,9 +109,9 @@ for i=1:m*n
     for j=i:m*n
         if i==j
             distance(i,j)=NaN;
-%You can?t marry yourself
+            %You can't marry yourself
         else
-            if adj3(i,j)==0 %WARNING, KEY, switch to adj for direct
+            if adj3(i,j)==0 
                 distance(i,j)=NaN;
                 %You can?t marry someone you don?t know
             else
@@ -120,7 +120,7 @@ for i=1:m*n
                     %Heterosexual marriage only
                 else
                     distance(i,j)=sqrt((x1(i) - x1(j))^2 + (y1(i) - y1(j))^2);
-                    %WARNING: Euclidean societies here! 
+                    %WARNING: Euclidean societies here! based on indices
                 end
             end
         end
@@ -140,32 +140,35 @@ for i=1:n*m
 end
 %everybody points to their best
 c=1;
-while c <= 2*max(nnz(sex),numel(sex)-nnz(sex))
+max_either_sex = max(nnz(sex),numel(sex)-nnz(sex));
+while c <= 2*max_either_sex
 %nnz(sex): number of women
 %numel(sex)-nnz(sex): number of men
 %c<:because you can only point to how many women are available
-for i=1:n*m
-    if i==marr(marr(i));
-        %mutual pointing
-        marriage(i)=marr(i);
+    for i=1:n*m
+        crush = marr(i);
+        if i==marr(crush);
+            %mutual pointing
+            marriage(i)=marr(i);
+        end
     end
-end
-for i=find(marriage==0)
-    if marriage(marr(i))~=0;
-    distance(i, marr(i))=NaN;
-    %If someone is married, we block him for everybody else and they %  %have to point someone else
+    for i=find(marriage==0)
+        if marriage(marr(i))~=0;
+            distance(i, marr(i))=NaN;
+            %If someone is married, we block him for everybody else and they %  %have to point someone else
+        end
     end
-end
-for i=1:n*m
-    [~, marr(1,i)]=min(distance(i,:));
-end
-c=c+1;
+    for i=1:n*m
+        [~, marr(1,i)]=min(distance(i,:));
+    end
+    c=c+1;
 end
 for i=1:m*n
     if marriage(i)==i
         marriage(i)=0;
     end
 end
+% probably unneeded, you already can't marry yourself.
 %SECTION 5: WELFARE MEASURES
 number=size(find(marriage),2)/2;
 %We need to divide because counts how many married people
@@ -174,44 +177,51 @@ for i=find(marriage>0)
     avgdist=avgdist+distance(i,marriage(i));
 end
 avgdist=avgdist/size(find(marriage>0),2);
+% average compatibility
+
 race=0;
 for i=1:m*n
     if marriage(i)>0
-        if marriage(i)<=(1+floor((i-1)/n))*n && marriage(i)>floor((i-1)/n)*n
+        curr_race = floor((i-1)/n);
+        if marriage(i)<=(1+curr_race)*n && marriage(i)>curr_race*n
             race=race+1;
-    end
+        end
     end
 end
 %race is now the number of intraracial marriages
-race=race/2;race=number-race;race=(race/number)/((m-1)/m);
-number=(number*2)/(m*n);
-avgdist=(sqrt(2)-avgdist)/sqrt(2);
+race=race/2; % divide for number of marriages (not number of people)
+race=number-race; %number of INTERracial marriages
+
+race=(race/number)/((m-1)/m); % race*m / number * (m-1), ratio of interracial marriages to interracial pairs
+number=(number*2)/(m*n); % ratio of people in marriages to total number of people
+avgdist=(sqrt(2)-avgdist)/sqrt(2); % sqrt(2) is optimal compatibility, normalized compatibility
 end
 
+% trying different probabilities of interconnection
 function [race,avgdist,number] = simul1(n,m,p,q,type)
-[~, r]=size(q);
-number=zeros(1,r);
-avgdist=zeros(1,1);
-race=zeros(1,r);
-for i=1:r
-[race(i),avgdist(i),number(i)]=welfare(n,m,p,q(i),type);
-end
+    [~, r]=size(q);
+    number=zeros(1,r);
+    avgdist=zeros(1,1);
+    race=zeros(1,r);
+    for i=1:r
+        [race(i),avgdist(i),number(i)]=welfare(n,m,p,q(i),type);
+    end
 end
 
-function [race,avgdist,number] = simul2(rep,n,m,p,q,type);
-[~, sizeq]=size(q);
-RACE=zeros(rep,sizeq);
-AVGDIST=zeros(rep,sizeq);
-NUMBER=zeros(rep,sizeq);
-parfor i=1:rep
-    [RACE(i,:), AVGDIST(i,:), NUMBER(i,:)]=simul1(n,m,p,q,type);
-end
-race=sum(RACE)/rep;
-avgdist=sum(AVGDIST)/rep;
-number=sum(NUMBER)/rep;
-if type==1
-    disp('direct marr')
-else
-    disp('long marr')
-end
+function [race,avgdist,number] = simul2(rep,n,m,p,q,type)
+    [~, sizeq]=size(q);
+    RACE=zeros(rep,sizeq);
+    AVGDIST=zeros(rep,sizeq);
+    NUMBER=zeros(rep,sizeq);
+    parfor i=1:rep
+        [RACE(i,:), AVGDIST(i,:), NUMBER(i,:)]=simul1(n,m,p,q,type);
+    end
+    race=sum(RACE)/rep;
+    avgdist=sum(AVGDIST)/rep;
+    number=sum(NUMBER)/rep;
+    if type==1
+        disp('direct marr')
+    else
+        disp('long marr')
+    end
 end
