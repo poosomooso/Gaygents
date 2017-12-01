@@ -19,9 +19,22 @@ def getGender(agents_per_race, race):
     
     return np.transpose(gender_matrix)
 
-def createPersonality(agents_per_race, race):
-    social_beliefs = np.random.rand(race*agents_per_race)
-    political_beliefs = np.random.rand(race*agents_per_race)
+def createPersonality(agents_per_race, race, gender_matrix=None):
+    if gender_matrix is None:
+        social_beliefs = np.random.rand(race*agents_per_race)
+        political_beliefs = np.random.rand(race*agents_per_race)
+    else:
+        mean_w = 0.25
+        mean_m = 0.75
+        social_beliefs_women = np.random.normal(loc=mean_w, scale=0.1, size=race*agents_per_race)
+        political_beliefs_women = np.random.normal(loc=mean_w, scale=0.1, size=race*agents_per_race)
+        social_beliefs_men = np.random.normal(loc=mean_m, scale=0.1, size=race*agents_per_race)
+        political_beliefs_men = np.random.normal(loc=mean_m, scale=0.1, size=race*agents_per_race)
+
+        gender_reshape = gender_matrix.reshape(race*agents_per_race)
+        social_beliefs = np.where(gender_reshape==1, social_beliefs_women, social_beliefs_men)
+        political_beliefs = np.where(gender_reshape==1, political_beliefs_women, political_beliefs_men)
+        
     return (social_beliefs, political_beliefs)
 
 def createAdj(agents_per_race, race, prob_inter=0.4, prob_intra=0.7):
@@ -149,6 +162,24 @@ def welfareRatios(num_intra, num_inter, marriage, races, agents_per_race, avg_di
     r3 = (np.sqrt(2)-avg_dist)/np.sqrt(2)
     
     return(r1,r2,r3)
+
+def genderRatios(marriage, agents, gender_matrix):
+    mw = 0
+    mm = 0
+    ww = 0
+
+    gender_reshape = gender_matrix.reshape(agents)
+    for agent in range(agents):
+        gender1 = gender_reshape[agent]
+        gender2 = gender_reshape[marriage[agent]]
+
+        if gender1 == 0 and gender1 == gender2:
+            mm+=1
+        elif gender1 == 1 and gender1 == gender2:
+            ww+=1
+        else:
+            mw+=1
+    return mw, mm, ww
 
 def runSim(agents_per_race, races, prob_intra, prob_inter):
     agents = agents_per_race*races
