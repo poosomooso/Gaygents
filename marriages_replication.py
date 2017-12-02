@@ -181,12 +181,13 @@ def genderRatios(marriage, agents, gender_matrix):
             mw+=1
     return mw, mm, ww
 
-def runSim(agents_per_race, races, prob_intra, prob_inter):
+def runSim(agents_per_race, races, prob_intra, prob_inter, marr_type=1):
     agents = agents_per_race*races
     genders=getGender(agents_per_race,races)
     social_beliefs, political_beliefs = createPersonality(agents_per_race, races)
     adj, adj2, adj3 = createAdj(agents_per_race, races, prob_inter=prob_inter, prob_intra=prob_intra)
-    distances = getPersonalityDistances(agents, adj, genders, social_beliefs, political_beliefs)
+    network = adj if marr_type == 1 else adj3
+    distances = getPersonalityDistances(agents, network, genders, social_beliefs, political_beliefs)
     marriage, distances = createMarriages(agents, distances,genders)
     avg_dist = averageDistances(distances, marriage)
     num_intra = numIntraracial(marriage, agents_per_race, races)
