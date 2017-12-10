@@ -19,13 +19,11 @@ def getGender(agents_per_race, race):
     
     return np.transpose(gender_matrix)
 
-def createPersonality(agents_per_race, race, gender_matrix=None):
+def createPersonality(agents_per_race, race, gender_matrix=None, mean_w=0.25, mean_m = 0.75):
     if gender_matrix is None:
         social_beliefs = np.random.rand(race*agents_per_race)
         political_beliefs = np.random.rand(race*agents_per_race)
     else:
-        mean_w = 0.25
-        mean_m = 0.75
         social_beliefs_women = np.random.normal(loc=mean_w, scale=0.1, size=race*agents_per_race)
         political_beliefs_women = np.random.normal(loc=mean_w, scale=0.1, size=race*agents_per_race)
         social_beliefs_men = np.random.normal(loc=mean_m, scale=0.1, size=race*agents_per_race)
