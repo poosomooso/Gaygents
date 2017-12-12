@@ -1,4 +1,4 @@
-# Gaygents
+# Effects of Race, Gender, and Sexual Orientation on Marriages with Online Dating
 
 ## Serena Chen and Apurva Raman
 
@@ -6,7 +6,7 @@
 
 Ortega and Hergovich, in their paper “The Strength of Absent Ties” [1] model marriages in social networks as influenced by online dating. They find that there are far more interracial couples and that couples have higher compatibility as a result of online dating (modeled by the addition of more interracial connections), and that the marriages are stronger. Ortega and Hergovich’s only model heterosexual marriages, so we modify the model to see if their result holds when not all of the marriages are heterosexual.
 
-We find that interracial relationships are more common and marriages are stronger as a result of increasing the probability of interracial connections for an all-bisexual society as well. We also find that the effect of of increasing the probability of interracial connections is stronger in an all-bisexual society. When bisexual agents of the same sex tend to have a higher compatibility with each other, **[result here? When the compatibility with the same gender of the bisexual agents increases even slightly, there is rapid increase in preference of same gender partners, until the number of same gender couples reaches the maximum.]**.
+We find that interracial relationships are more common and marriages are stronger as a result of increasing the probability of interracial connections for an all-bisexual society as well. We also find that the effect of of increasing the probability of interracial connections is weaker in an all-bisexual society. When bisexual agents of the same sex tend to have a higher compatibility with each other, **[result here? When the compatibility with the same gender of the bisexual agents increases even slightly, there is rapid increase in preference of same gender partners, until the number of same gender couples reaches the maximum.]**.
 
 We also investigate what happens if people of the same race tend to have higher compatibility with each other and find **[result here]**.
 
@@ -53,7 +53,7 @@ The second method of checking that the behavior is the same is to verify the gra
 ![Figure 2b: strength](img/replication_strength.png)
 
 
-**Figure 2:** The average compatibility (0-1, where 1 is perfectly compatible/everyone married someone of identical personality) as the probability of interracial connections increase. On the top is Ortega and Hergovich’s graph, on the bottom is our graph.
+**Figure 2:** The average compatibility (0-1, where 1 is perfectly compatible/everyone married someone of identical personality) as the probability of interracial connections increase. On the top is Ortega and Hergovich’s graph, on the bottom is our graph. The label dir here refers to direct marriages.
 
 Our graph has roughly the same shape as Ortega and Hergovich’s, but there is much more noise. Both our simulation and Ortega and Hergovich’s simulation was run repeatedly and averaged, but Ortega and Hergovich do not report how many times the simulation was run. The difference is likely due to the discrepancy in the number of runs. From Figure 2, we can tell that as interracial connections increase, compatibility and strength of marriages increases as well, but at a decreasing rate. This gives us confidence that our replication of the Ortega and Hergovich model was successful.
 
@@ -61,11 +61,13 @@ Our graph has roughly the same shape as Ortega and Hergovich’s, but there is m
 
 ![Figure 3b: diversity](img/replication_diversity.png)
 
-**Figure 3:** The percentage of interracial marriages to the percentage of possible interracial links (where 1 means that number of interracial marriages matches the number of interracial marriages if we had just randomly picked pairs to marry) as the probability of interracial connections increase. Left is Ortega and Hergovich’s graph, the right is our graph.
+**Figure 3:** The "diversity", or percentage of interracial marriages to the percentage of possible interracial links (where 1 means that number of interracial marriages matches the number of interracial marriages if we had just randomly picked pairs to marry) as the probability of interracial connections increase. Left is Ortega and Hergovich’s graph, the right is our graph.
 
 Similarly to Figure 2, our graph is similar in shape to Ortega and Hergovich’s, with some noise. We get the same result as Ortega and Hergovich, which is that as interracial connections increase, so do interracial links.
 
-## Extension
+Thus we can conclude that our replication of Ortega and Hergovich's experiment was successful in producing the same results, and that as interracial connections increase (as they do in the presence of online dating), the number of interracial marriages and the compatibility of those marriages is greater.
+
+## Adding bisexuality
 
 Rosenfeld and Thomas’s 2012 paper, “Searching for a mate: the rise of the internet as a social intermediary,” states that same-sex couples are more likely than heterosexual couples to find their partner through online dating[2]. Ortega and Hergovich address this in their paper, but state that introducing same-sex couples would cause instability in the model.
 
@@ -75,15 +77,23 @@ Our first experiment is to add in bisexuality. The only difference here is that 
 
 **Figure 4:** The average compatibility as the probability of interracial connections increase in an all-bisexual society. **needs axis labels**
 
-# interpretation here
+We can see from this graph that the strengths in the all-bisexual society are all slightly higher (starting at about 9.2 rather than 8.5 and ending at 9.5 rather than 9.0), but the general shape is preserved. Since there are more potential marriage candidates for agents in the all-bisexual society, there is an increased likelihood that they will find a better match. However, this effect is only slight because the compatibility between agents is already so high.
+
+The range of probabilities is less for the all bisexual society because the starting compatibility is already so high. This means that the effect of changing the probability of interracial connection (increasing online dating) is less than for the all heterosexual society.
+
+
 
 ![Figure 5: diversity](img/extension_diversity.png)
 
 **Figure 5:** The percentage of interracial marriages to the percentage of possible interracial links as the probability of interracial connections increase for an all-bisexual society. **needs axis labels**
 
+The shape of the curve is closer to linear than for the heterosexual society.
+
 # interpretation here
 
-Our second experiment is to add difference between genders in terms of compatibility. This experiment explores what would happen in the all-bisexual society if the things people would like their partner to share with them are more likely to be shared of people with the same sex.
+## Gender differences
+
+Our second experiment is to add difference between genders in terms of compatibility. This experiment explores what would happen in the all-bisexual society if the things people would like their partner to share with them are more likely to be shared of people with the same gender.
 
 If we hypothesize that societal gender roles support fostering certain hobbies, personality traits, or values, we could model the effect of that by drawing from a normal distribution of personality values for men and women and have the means for each gender be slightly offset. As the difference between the means increases, there will be less similarity between people of different genders, but there will be an overlap.
 
@@ -98,15 +108,34 @@ As the difference increases beyond 0.5, there are more same-gender couples than 
 
 # more interpretation
 
-![Figure 7: diversity](img/differences vs strengths.png)
+![Figure 7: differences vs strengths](img/differences vs strengths.png)
 
 **Figure 7:** **caption here** **needs axis labels**
 
 # more interpretation
 
-Our third experiment is to add differences in personality due to race rather than sex.
+## Racial Differences
 
-# All the stuff
+Our third experiment is to add differences in personality due to race rather than gender. Since we know from our replication of Ortega and Hergovich's experiment that increased interracial connections increased strength and percentage of interracial couples, we test to see whether that holds when there are compatibility differences between races.
+
+Similarly to the hypothesis about gender differences, we could expect that social stratification and cultural differences that are related to race result in people being less likely to have "perfect compatibility". It could also represent the effect of pressure in society to marry someone of the same race.
+
+Just as with the gender differences, we model racial differences by pulling from normal distributions where the means for each race are linearly spaced. We see what the relationship is between the strength of marriages and size of mean compatibility difference between races.
+
+![Figure 8: strength and race differences](img/img.png)
+
+**Figure 8:** **caption here**
+
+# interpretation here
+
+We then see what the relationship is between amount of racial difference and the percentage of interracial marriages. We expect that as the amount of difference (incompatibility) increases, the number of interracial marriages decreases.
+
+![Figure 9: diversity and race differences](img/img.png)
+
+**Figure 9:** **caption here**
+
+# interpretation here
+
 
 ## Future work
 
@@ -119,6 +148,8 @@ Additionally, starting with a Barabasi-Albert graph with clustering around race 
 Integration of two equally-sized populations may also be easier than integration of a minority group. Modifying the model to allow having races of different populations would allow this to be tested. Allowing agents to belong to multiple racial groups or have some continuous representation of race (and generations of racial intermixing) could also be an interesting extension to this model.
 
 Similarly, having a spectrum of different types of people an agent can be attracted to rather than binary sex may capture a more nuanced and less oversimplified view of sexuality. It is also another variable where preferential choice of agents comes into play. It would also allow for agents not just looking for similarity in their partner, but for a specific range of traits that could be similar to or different from their own.
+
+Research on what affects people's choices of partner and whether those things are affected by race an gender (and to what degree) would be useful. It would help us identify whether the hypotheses in the racial differences and gender differences experiments are valid.
 
 ## Annotated Bibliography
 
