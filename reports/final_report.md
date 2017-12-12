@@ -73,9 +73,9 @@ Rosenfeld and Thomas’s 2012 paper, “Searching for a mate: the rise of the in
 
 Our first experiment is to add in bisexuality. The only difference here is that agents can point to agents of the same sex. Again, we look at the compatibility and percentage of interracial marriages for increasing interracial connection probability. We run the simulation with the same parameters.
 
-![Figure 4: strength](img/extension_strength.png)
+![Figure 4: strength](img/bisexual_str.png)
 
-**Figure 4:** The average compatibility as the probability of interracial connections increase in an all-bisexual society. **needs axis labels**
+**Figure 4:** The average compatibility as the probability of interracial connections increase in an all-bisexual society.
 
 We can see from this graph that the strengths in the all-bisexual society are all slightly higher (starting at about 9.2 rather than 8.5 and ending at 9.5 rather than 9.0), but the general shape is preserved. Since there are more potential marriage candidates for agents in the all-bisexual society, there is an increased likelihood that they will find a better match. However, this effect is only slight because the compatibility between agents is already so high.
 
@@ -83,9 +83,9 @@ The range of probabilities is less for the all bisexual society because the star
 
 
 
-![Figure 5: diversity](img/extension_diversity.png)
+![Figure 5: diversity](img/bisexual_div.png)
 
-**Figure 5:** The percentage of interracial marriages to the percentage of possible interracial links as the probability of interracial connections increase for an all-bisexual society. **needs axis labels**
+**Figure 5:** The percentage of interracial marriages to the percentage of possible interracial links as the probability of interracial connections increase for an all-bisexual society.
 
 The shape of the curve is closer to linear than for the heterosexual society.
 
@@ -100,17 +100,17 @@ If we hypothesize that societal gender roles support fostering certain hobbies, 
 With this extension, this model takes what has previously been considered sex by Ortega and Hergovich and considers it gender. However, it is also still simplified as binary.
 Additionally, there is nothing in the model to represent pressure to be in a heterosexual marriage.
 
-![Figure 6: couples](img/couples.png)
+![Figure 6: couples](img/partner_type_gender_diff.png)
 
-**Figure 6:** The number of married same-gender (mm and ww) couples and the number of different-gender couples (mw) as the amount of difference between the means (for personality traits and compatibility) increases. **more explanation of the axes and stuff** **needs axis labels**
+**Figure 6:** The number of married same-gender (mm and ww) couples and the number of different-gender couples (mw) as the amount of difference between the means (for personality traits and compatibility) increases. **more explanation of the axes and stuff**
 
 As the difference increases beyond 0.5, there are more same-gender couples than different-gender couples. With sufficient difference, all agents are most compatible with agents of the same gender.
 
 # more interpretation
 
-![Figure 7: differences vs strengths](img/differences vs strengths.png)
+![Figure 7: differences vs strengths](img/strength_gender_diff.png)
 
-**Figure 7:** **caption here** **needs axis labels**
+**Figure 7:** **caption here**
 
 # more interpretation
 
@@ -122,7 +122,7 @@ Similarly to the hypothesis about gender differences, we could expect that socia
 
 Just as with the gender differences, we model racial differences by pulling from normal distributions where the means for each race are linearly spaced. We see what the relationship is between the strength of marriages and size of mean compatibility difference between races.
 
-![Figure 8: strength and race differences](img/img.png)
+![Figure 8: strength and race differences](img/varying_racialdiffs_interconnection_div.png)
 
 **Figure 8:** **caption here**
 
@@ -130,7 +130,7 @@ Just as with the gender differences, we model racial differences by pulling from
 
 We then see what the relationship is between amount of racial difference and the percentage of interracial marriages. We expect that as the amount of difference (incompatibility) increases, the number of interracial marriages decreases.
 
-![Figure 9: diversity and race differences](img/img.png)
+![Figure 9: diversity and race differences](img/varying_racialdiffs_interconnection_str.png)
 
 **Figure 9:** **caption here**
 
