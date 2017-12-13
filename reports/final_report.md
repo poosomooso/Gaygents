@@ -4,11 +4,9 @@
 
 ## Abstract
 
-Ortega and Hergovich, in their paper “The Strength of Absent Ties” [1] model marriages in social networks as influenced by online dating. They find that there are far more interracial couples and that couples have higher compatibility as a result of online dating (modeled by the addition of more interracial connections), and that the marriages are stronger. Ortega and Hergovich’s only model heterosexual marriages, so we modify the model to see if their result holds when not all of the marriages are heterosexual.
+Ortega and Hergovich, in their paper “The Strength of Absent Ties” [1] model marriages in social networks as influenced by online dating. They find that there are far more interracial couples and that couples have higher compatibility as a result of online dating (modeled by the addition of more interracial connections), and that the marriages are stronger. Ortega and Hergovich’s only model heterosexual marriages, so we modify the model to see if their result holds when not all of the marriages are heterosexual and find that it does. We also modify the model to see if personality differences that correspond to race or gender affect this dynamic, and find that compatibility differences corresponding to genders affects the choice of partner's gender dramatically in an all-bisexual society. The number of interracial marriages decrease linearly with the compatibility differences in race.
 
-We find that interracial relationships are more common and marriages are stronger as a result of increasing the probability of interracial connections for an all-bisexual society as well. We also find that the effect (on compatibility) of increasing the probability of interracial connections is weaker in an all-bisexual society. When bisexual agents of the same sex tend to have a higher compatibility with each other, **[result here? When the compatibility with the same gender of the bisexual agents increases even slightly, there is rapid increase in preference of same gender partners, until the number of same gender couples reaches the maximum.]**.
 
-We also investigate what happens if people of the same race tend to have higher compatibility with each other and find **[result here]**.
 
 ## Methodology and Modeling Decisions
 Ortega and Hergovich model marriages in social networks to find how online dating affects what they define as welfare metrics for the society: racial integration and strength of marriages. They find that online dating, which they model by increasing the probability of interracial connections, results in more interracial marriages and that marriages overall are stronger.
@@ -67,7 +65,7 @@ Similarly to Figure 2, our graph is similar in shape to Ortega and Hergovich’s
 
 Thus we can conclude that our replication of Ortega and Hergovich's experiment was successful in producing the same results, and that as interracial connections increase (as they do in the presence of online dating), the number of interracial marriages and the compatibility of those marriages is greater.
 
-## Adding bisexuality
+## Adding Bisexuality
 
 Rosenfeld and Thomas’s 2012 paper, “Searching for a mate: the rise of the internet as a social intermediary,” states that same-sex couples are more likely than heterosexual couples to find their partner through online dating[2]. Ortega and Hergovich address this in their paper, but state that introducing same-sex couples would cause instability in the model.
 
@@ -87,7 +85,7 @@ The range of probabilities is less for the all bisexual society because the star
 
 The shape of the curve is slightly closer to linear than for the heterosexual society, but the range and shape is about the same. In the all-bisexual society, there is no major difference in the percentage of interracial links compared to the results from our replication of Ortega and Hergovich's experiment.
 
-## Gender differences
+## Gender Differences
 
 Our second experiment is to add difference between genders in terms of compatibility to see if this changes the results. This experiment explores what would happen in the all-bisexual society if the things people would like their partner to share with them are more likely to be shared with people of the same gender.
 
@@ -118,21 +116,31 @@ Our third experiment is to add differences in personality due to race rather tha
 
 Similarly to the hypothesis about gender differences, we could expect that social stratification and cultural differences that are related to race result in people being less likely to have "perfect compatibility". It could also represent the effect of pressure in society to marry someone of the same race.
 
-Just as with the gender differences, we model racial differences by pulling from normal distributions where the means for each race are linearly spaced. We see what the relationship is between the strength of marriages and size of mean compatibility difference between races.
+Just as with the gender differences, we model racial differences by pulling from normal distributions where the means for each race are linearly spaced. We see what the relationship is between the strength of marriages and size of mean compatibility difference between races. We do this with two races.
 
-![Figure 8: strength and race differences](img/varying_racialdiffs_interconnection_div.png)
+![Figure 8: strength and race differences](img/varying_racialdiffs_interconnection_str.png)
 
-**Figure 8:** **caption here**
+**Figure 8:** **Average compatibility as the difference between mean personalities of each race increases. Each line is a different probability of interconnection.**
 
-# interpretation here
+There is not a strong relationship between average compatibility and personality differences among races.
+
+For low probabilities of interconnection, at small racial difference values, the effect of the normal distribution potentially being truncated at values less than 0 and greater than 1 is exaggerated. If the difference is at its maximum, agents of the same race are more likely to be compatible than they would have for smaller differences. This is an artifact of setting bounds for personality.
+
+For high probabilities of interconnection, the compatibility decreases as the personality differences between races increases. This is because at high amounts of racial difference, there are fewer compatible people to choose from. For low amounts of personality difference, there is a greater probability an agent will be compatible with an agent of another race.
 
 We then see what the relationship is between amount of racial difference and the percentage of interracial marriages. We expect that as the amount of difference (incompatibility) increases, the number of interracial marriages decreases.
 
-![Figure 9: diversity and race differences](img/varying_racialdiffs_interconnection_str.png)
+![Figure 9: diversity and race differences](img/varying_racialdiffs_interconnection_div.png)
 
-**Figure 9:** **caption here**
+**Figure 9:** **Number of interracial couples as the difference between mean personalities of each race increases. A value of 0 indicates that the mean personality values for both races are 0.5. A value of 0.2 indicates that the mean personality value for one race is 0.3 and the other is 0.7. Each line is a different probability of interconnection.**
 
-# interpretation here
+As the amount of racial differences increases, the number of interracial couples decreases. The relationship appears roughly linear. For large probabilities of interconnection, the effect is much greater, as indicated by the steeper slope.
+
+## Conclusions
+
+We find that interracial relationships are more common and marriages are stronger as a result of increasing the probability of interracial connections for an all-bisexual society as well. We also find that the effect (on compatibility) of increasing the probability of interracial connections is weaker in an all-bisexual society. When the compatibility with the same gender of the bisexual agents increases even slightly, there is rapid increase in preference of same gender partners, until the number of same gender couples reaches the maximum.
+
+We also investigate what happens if people of the same race tend to have higher compatibility with each other and find that the number of interracial marriages decrease linearly with the compatibility differences in race.  The strength of the marriages is not strongly related to personality differences between races.
 
 
 ## Future work
